@@ -4,15 +4,9 @@
 
 Py-Blog is a simple project I made that lets people create blogs! You will need experience in MongoDB though, since this only ships the rendering and front-end.
 
-To actually post a new post you will need to create your own post client. Something simple like:
+You can use `post_creator.py` to format posts, but make sure to configure it from source first. If you want, you can check the comments and docstrings in `post_creator.py` for info on how posts are stored (only if you wish to make your own posting client).
 
-```py
-Post Title: <your-post-title>
-Post Content: <post-content>
-Post Author: <your-name-here>
-```
-
-I *might* make software that lets people create posts by myself, but this project is only focusing on rendering the frontend.
+~~I *might* make software that lets people create posts by myself, but this project is only focusing on rendering the frontend.~~ (I eventually did)
 
 Screenshots:
 ![image](https://github.com/LolzTheDev/py-blog/assets/141521874/7a6d40cd-5de5-46f3-bd39-cb43beba89ea)
