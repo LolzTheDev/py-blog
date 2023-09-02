@@ -1,8 +1,9 @@
 # Author: LolzTheDev
-# Version: 1.0.0
+# Version: 1.0.2
 # GitHub: https://github.com/LolzTheGreat/py-blog
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from flask.logging import default_handler
 import json, os, pymongo, datetime
 
 os.system('clear||cls')
@@ -14,13 +15,16 @@ with open("./config.json") as config:
     title = config_contents["title"]
     db_url = config_contents["mongodb_url"]
 
-mongo = pymongo.MongoClient(db_url)
-db = mongo["blogdb"]
-posts = db["posts"]
+try:
+    mongo = pymongo.MongoClient(db_url)
+    db = mongo["blogdb"]
+    posts = db["posts"]
+except:
+    print("Fatal database error. Exiting program.")
 
 app = Flask(__name__)
 
-# filter for unix timestamp -> datetime obj
+# filter for unix timestamp -> formatted datetime string
 @app.template_filter('utod')
 def utod(uts):
     return datetime.datetime.fromtimestamp(uts).strftime("%m/%d/%Y, %I:%M:%S %p")
