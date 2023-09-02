@@ -1,8 +1,8 @@
 /* I'm bad at css - Modify it if you wish. */
-@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
 
 body {
-    font-family: 'Comfortaa', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
 }
 
 .container {
