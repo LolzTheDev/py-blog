@@ -25,7 +25,7 @@ app = Flask(__name__)
 def utod(uts):
     return datetime.datetime.fromtimestamp(uts).strftime("%m/%d/%Y, %I:%M:%S %p")
 
-@app.route("/")
+@app.route("/", methods=["GET"])
 def home():
     # find and sort posts by time | uses unix timestamps
     _posts = posts.find({ "author" : author }).sort('date', pymongo.DESCENDING)
