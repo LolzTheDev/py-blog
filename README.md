@@ -14,6 +14,12 @@ Post Author: <your-name-here>
 
 I *might* make software that lets people create posts by myself, but this project is only focusing on rendering the frontend.
 
+Screenshots:
+![image](https://github.com/LolzTheDev/py-blog/assets/141521874/7a6d40cd-5de5-46f3-bd39-cb43beba89ea)
+![image](https://github.com/LolzTheDev/py-blog/assets/141521874/1f84b730-44cd-4831-9efc-53d241dbc6bf)
+
+
+
 > Can I contribute?
 
 Of Course! Feel free to clone the repo and make pull requests. I don't use GitHub too much so the request might take a while to actually review.
