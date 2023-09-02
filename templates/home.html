@@ -3,9 +3,18 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ page_title }} - Home</title>
+        <link rel="stylesheet" href="/static/styles.css" />
     </head>
 
     <body>
         <h1>{{ author }}'s Blog</h1>
+
+        {% for post in posts %}
+            <div class="container">
+                <h3 class="title">{{ post.title }}</h3>
+                <p class="content">{{ post.content | string }}</p>
+                <p class="footer"><i>Posted on {{ post.date | utod }} by {{ post.author }}</i></p>
+            </div>
+        {% endfor %}
     </body>
 </html>

@@ -1,5 +1,5 @@
 {
-    "author": "LolzTheGreat",
-    "title": "Template Blog",
-    "mongodb_url": "mongodb+srv://lolzthedev:Z48juFZjBTyEkxbJ@clustuh.lk2twcu.mongodb.net/"
+    "author": "<your-name>",
+    "title": "<your-blog-name>",
+    "mongodb_url": "<your-db-string>"
 }
