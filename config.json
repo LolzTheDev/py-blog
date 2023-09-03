@@ -1,5 +1,6 @@
 {
     "author": "<your-name>",
     "title": "<your-blog-name>",
-    "mongodb_url": "<your-db-string>"
+    "mongodb_url": "<your-db-string>",
+    "debug_mode": false
 }

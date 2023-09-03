@@ -14,6 +14,7 @@ with open("./config.json") as config:
     author = config_contents["author"]
     title = config_contents["title"]
     db_url = config_contents["mongodb_url"]
+    debug_mode: bool = bool(config_contents["debug_mode"])
 
 try:
     mongo = pymongo.MongoClient(db_url)
@@ -45,5 +46,5 @@ if __name__ == "__main__":
     app.run(
         host="0.0.0.0", 
         port=8080, 
-        debug=False
+        debug=debug_mode
     )
