@@ -1,5 +1,5 @@
 # Author: LolzTheDev
-# Version: 1.1.0
+# Version: 1.1.2
 # GitHub: https://github.com/LolzTheDev/py-blog
 
 from flask import Flask, render_template, request, redirect
@@ -48,7 +48,7 @@ def home(dev_mode=False):
             dev_mode=dev_mode
         )
     else:
-        return redirect("/")
+        return redirect("/false")
 
 # api to GET posts
 @app.route("/api/", methods=["GET"])
