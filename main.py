@@ -1,5 +1,5 @@
 # Author: LolzTheDev
-# Version: 1.0.4
+# Version: 1.1.0
 # GitHub: https://github.com/LolzTheDev/py-blog
 
 from flask import Flask, render_template, request, redirect
