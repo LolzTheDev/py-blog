@@ -1,6 +1,6 @@
 # Author: LolzTheDev
 # Version: 1.0.3
-# GitHub: https://github.com/LolzTheGreat/py-blog
+# GitHub: https://github.com/LolzTheDev/py-blog
 
 from flask import Flask, render_template, request
 from flask.logging import default_handler
