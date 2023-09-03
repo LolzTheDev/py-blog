@@ -13,7 +13,7 @@
             <div class="container">
                 <h3 class="title">{{ post.title }}</h3>
                 <p class="content">{{ post.content | string }}</p>
-                <p class="footer"><i>Posted on {{ post.date | utod }} by {{ post.author }}</i></p>
+                <p class="footer"><i>Posted on {{ post.date | utod }} by {{ post.author }} {% if dev_mode %}(Post ID: {{ post._id }}){% endif %}</i></p>
             </div>
         {% endfor %}
 
