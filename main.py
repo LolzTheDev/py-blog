@@ -2,7 +2,7 @@
 # Version: 1.1.2
 # GitHub: https://github.com/LolzTheDev/py-blog
 
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, jsonify
 from flask.logging import default_handler
 from bson.objectid import ObjectId
 from bson import json_util
@@ -17,6 +17,7 @@ with open("./config.json") as config:
     title = config_contents["title"]
     db_url = config_contents["mongodb_url"]
     debug_mode: bool = bool(config_contents["debug_mode"])
+    show_post_ids: bool = bool(config_contents["show_post_ids"])
 
 try:
     mongo = pymongo.MongoClient(db_url)
@@ -34,31 +35,27 @@ def utod(uts):
     return datetime.datetime.fromtimestamp(uts).strftime("%m/%d/%Y, %I:%M:%S %p")
 
 @app.route("/", methods=["GET"])
-@app.route("/<dev_mode>", methods=["GET"])
-def home(dev_mode=False):
-    if str(dev_mode).lower() == "true" or str(dev_mode).lower == "false":
-        # find and sort posts by time | uses unix timestamps
-        _posts = posts.find({ "author" : author }).sort('date', pymongo.DESCENDING)
+def home():
+    # find and sort posts by time | uses unix timestamps
+    _posts = posts.find({ "author" : author }).sort('date', pymongo.DESCENDING)
 
-        return render_template(
-            "home.html", 
-            page_title=title, 
-            posts=_posts, 
-            author=author,
-            dev_mode=dev_mode
-        )
-    else:
-        return redirect("/false")
+    return render_template(
+        "home.html", 
+        page_title=title, 
+        posts=_posts, 
+        author=author,
+        show_id=show_post_ids
+    )
 
 # api to GET posts
 @app.route("/api/", methods=["GET"])
 def api_home():
-    return json.loads(json.dumps({
+    return jsonify({
         'uptime': int(time.time() - start_time),
         'stats': {
             'post_count': posts.count_documents({})
         }
-    }))
+    })
 
 @app.route("/api/posts/", methods=["GET"])
 def api_all_posts():
@@ -74,27 +71,27 @@ def api_post(id=None):
             if posts.count_documents({"_id" : ObjectId(id)}) > 0:
                 _post = posts.find_one({"_id" : ObjectId(id)})
 
-                return json.loads(json.dumps({
+                return jsonify({
                     'title': _post["title"],
                     'content': _post["content"],
                     'author': _post["author"],
                     'timestamp': _post["date"],
-                    "id": _post["_id"]
-                }, default=str))
+                    "id": str(_post["_id"])
+                })
             else:
-                return json.loads(json.dumps({
+                return jsonify({
                     'error': {
                         'code': 404,
                         'msg': 'post not found'
                     }
-                }))
+                })
         except bson.errors.InvalidId as InvalidIdErr:
-            return json.loads(json.dumps({
+            return jsonify({
                     'error': {
                         'code': 404,
                         'msg': 'post not found (invalid id?)'
                     }
-                }))
+                })
 
 
 if __name__ == "__main__":

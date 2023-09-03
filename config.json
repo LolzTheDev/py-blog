@@ -2,5 +2,6 @@
     "author": "<your-name>",
     "title": "<your-blog-name>",
     "mongodb_url": "<your-db-string>",
-    "debug_mode": false
+    "debug_mode": false,
+    "show_post_ids": true
 }
