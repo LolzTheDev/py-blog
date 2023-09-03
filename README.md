@@ -1,4 +1,4 @@
-# Py-Blog v1.0.0 - By LolzTheDev
+# Py-Blog - By LolzTheDev
 
 > What is Py-Blog?
 
