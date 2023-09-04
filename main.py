@@ -2,7 +2,6 @@
 # GitHub: https://github.com/LolzTheDev/py-blog
 
 from flask import Flask, render_template, request, redirect, jsonify
-from flask.logging import default_handler
 from bson.objectid import ObjectId
 from bson import json_util
 import json, os, pymongo, datetime, time, bson.errors
