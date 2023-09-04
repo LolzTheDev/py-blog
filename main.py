@@ -1,5 +1,4 @@
 # Author: LolzTheDev
-# Version: 1.1.2
 # GitHub: https://github.com/LolzTheDev/py-blog
 
 from flask import Flask, render_template, request, redirect, jsonify
@@ -14,6 +13,7 @@ with open("./config.json") as config:
     config_contents = json.load(config)
 
     author = config_contents["author"]
+    author_ip = config_contents["author_ip"]
     title = config_contents["title"]
     db_url = config_contents["mongodb_url"]
     debug_mode: bool = bool(config_contents["debug_mode"])
@@ -37,7 +37,7 @@ def utod(uts):
 @app.route("/", methods=["GET"])
 def home():
     # find and sort posts by time | uses unix timestamps
-    _posts = posts.find({ "author" : author }).sort('date', pymongo.DESCENDING)
+    _posts = posts.find({}).sort('date', pymongo.DESCENDING)
 
     return render_template(
         "home.html", 
