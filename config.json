@@ -1,5 +1,6 @@
 {
     "author": "<your-name>",
+    "author-ip": "<your-ip-here>",
     "title": "<your-blog-name>",
     "mongodb_url": "<your-db-string>",
     "debug_mode": false,
