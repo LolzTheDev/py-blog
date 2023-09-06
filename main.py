@@ -12,7 +12,6 @@ with open("./config.json") as config:
     config_contents = json.load(config)
 
     author = config_contents["author"]
-    author_ip = config_contents["author_ip"]
     title = config_contents["title"]
     db_url = config_contents["mongodb_url"]
     debug_mode: bool = bool(config_contents["debug_mode"])
@@ -20,10 +19,13 @@ with open("./config.json") as config:
 
 try:
     mongo = pymongo.MongoClient(db_url)
+
     db = mongo["blogdb"]
     posts = db["posts"]
-except:
+
+except Exception as error:
     print("Fatal database error. Exiting program.")
+    print(f"({error})")
 
 app = Flask(__name__)
 start_time = time.time()
@@ -35,16 +37,17 @@ def utod(uts):
 
 @app.route("/", methods=["GET"])
 def home():
-    # find and sort posts by time | uses unix timestamps
-    _posts = posts.find({}).sort('date', pymongo.DESCENDING)
-
-    return render_template(
-        "home.html", 
-        page_title=title, 
-        posts=_posts, 
-        author=author,
-        show_id=show_post_ids
-    )
+    if request.method == "GET":
+        # find and sort posts by time | uses unix timestamps
+        _posts = posts.find().sort('date', pymongo.DESCENDING)
+        
+        return render_template(
+            "home.html", 
+            page_title=title, 
+            posts=_posts, 
+            author=author,
+            show_id=show_post_ids
+        )
 
 # api to GET posts
 @app.route("/api/", methods=["GET"])
@@ -58,13 +61,12 @@ def api_home():
 
 @app.route("/api/posts/", methods=["GET"])
 def api_all_posts():
-    _posts = list(posts.find({}))
-    return json.loads(json_util.dumps(_posts))
+    return jsonify(list(posts.find()))
 
 @app.route("/api/post/<id>", methods=["GET"])
 def api_post(id=None):
     if id == None:
-        return redirect("/api/")
+        return redirect("/api/posts/")
     else:
         try:
             if posts.count_documents({"_id" : ObjectId(id)}) > 0:
