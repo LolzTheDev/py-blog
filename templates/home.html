@@ -3,19 +3,25 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ page_title }} - Home</title>
-        <link rel="stylesheet" href="/static/styles.css" />
+
+        <!-- New CSS src is from Tailwind's CDN -->
+        <script src="https://cdn.tailwindcss.com"></script>
     </head>
     <body>
-        <h1>{{ author }}'s Blog</h1>
+        <div class="font-sans w-full bg-slate-800 text-white px-4 py-4 font-semibold">
+            <h1 class="text-4xl">{{ author }}'s Blog</h1>
+        </div> <br />
+
+        <h1 class="text-3xl font-sans font-semibold text-center">Posts</h1>
 
         {% for post in posts %}
-            <div class="container">
-                <h3 class="title">{{ post.title }}</h3>
-                <p class="content">{{ post.content | string }}</p>
-                <p class="footer"><i>Posted on {{ post.date | utod }} by {{ post.author }} {% if show_id %}(Post ID: {{ post._id }}){% endif %}</i></p>
+            <div class="my-4 bg-gray-200 border-4 border-solid border-gray-300 px-6 py-4 rounded-md leading-relaxed" style="margin-right: 20%; margin-left: 20%;">
+                <h3 class="text-left font-semibold text-2xl">{{ post.title | string }}</h3> <br />
+                <p class="text-left text-lg">{{ post.content | string }}</p> <br />
+                <p class="text-left text-sm"><i>Posted on {{ post.date | utod }} by {{ post.author | string }} {% if show_id %}(Post ID: {{ post._id | string }}){% endif %}</i></p>
             </div>
         {% endfor %}
 
-        <p class="footer">Made with ❤️ by <a href="https://github.com/LolzTheDev">LolzTheDev</a>!</p>
+        <p class="text-center text-sm">Made with ❤️ by <a href="https://github.com/LolzTheDev" class="text-red-500">LolzTheDev</a>!</p>
     </body>
 </html>
