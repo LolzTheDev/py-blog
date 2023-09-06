@@ -6,13 +6,8 @@ Py-Blog is a simple project I made that lets people create blogs! You will need 
 
 You can use `post_creator.py` to format posts, but make sure to configure it from source first. If you want, you can check the comments and docstrings in `post_creator.py` for info on how posts are stored (only if you wish to make your own posting client).
 
-~~I *might* make software that lets people create posts by myself, but this project is only focusing on rendering the frontend.~~ (I eventually did)
-
 Screenshots:
-![image](https://github.com/LolzTheDev/py-blog/assets/141521874/7a6d40cd-5de5-46f3-bd39-cb43beba89ea)
-![image](https://github.com/LolzTheDev/py-blog/assets/141521874/1f84b730-44cd-4831-9efc-53d241dbc6bf)
-
-
+![Blog](static/images/examples/blog.png)
 
 > Can I contribute?
 
