@@ -1,8 +1,9 @@
 {
     "author": "<your-name>",
-    "author-ip": "<your-ip-here>",
     "title": "<your-blog-name>",
     "mongodb_url": "<your-db-string>",
+    "admin_key": "<your-password>",
+
     "debug_mode": false,
     "show_post_ids": true
 }
