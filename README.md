@@ -1,3 +1,6 @@
+# As of February 16 2024, Py-Blog is deprecated! Py-Blog will no longer receive updates (even security updates).
+What can you do? You could try my other blog template (Node.JS)! Or you could maintain this yourself. Thank you!
+
 # Py-Blog - By LolzTheDev
 
 > What is Py-Blog?
